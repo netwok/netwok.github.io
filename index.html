@@ -6,11 +6,12 @@ layout: default
 
   <h1 class="page-heading">Posts</h1>
   <p>The first text in my first website</p>
+  <p><a href = ./gdpr.html></a>This should be a link</p>
   <ul class="post-list">
     {% for post in site.posts %}
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <p><a href = ./gdpr.html></a>This should be a link</p>
+        
 
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>

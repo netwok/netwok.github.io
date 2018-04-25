@@ -28,4 +28,26 @@ sum(even_fib(4000000))
   </code>
  </pre>
 
+<pre>
+ <code>
+def primes(n):
+    fac = 2
+    end = n
+    maxi = -1
+    
+    while fac <= n:
+        print('trying fac {}'.format(fac))
+        while n%fac == 0:
+            print('success')
+            n=int(n/fac)
+            print('end is {}'.format(n))
+            maxi = fac
+        fac += 1
+    return maxi
+
+primes(600851475143)
+  </code>
+ </pre>
+
+
 </html>

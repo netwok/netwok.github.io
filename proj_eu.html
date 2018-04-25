@@ -74,6 +74,47 @@ def get_pal():
     return ans
     
 get_pal()
+
+5.
+def hard():
+    i = 2520
+    found = False
+    while found == False:
+        found = True
+        for j in range(1, 21):
+            if i%j == 0:
+                pass
+            else:
+                found = False
+                i += 2
+    return i
+    
+hard()
+
+also:
+<-- import pandas as pd
+
+def primes(n):
+    fac = 2
+    end = n
+    pri = []
+    
+    while fac <= n:
+        while n%fac == 0:
+            print('success')
+            n=int(n/fac)
+            pri.append(fac)
+        fac += 1
+    return pri
+
+
+def all_primes(n):
+    totals = []
+    for i in range(2, n+1):
+        totals.append(primes(i))
+    return totals
+    
+all_primes(4) -->
 </head>
 
 </html>

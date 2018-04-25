@@ -130,6 +130,29 @@ def sq_sum(n = 100):
         sum = sum + i
     return sum * sum
     
+7.
+def isprime(n):
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2==0:
+        return False
+    for i in range(3, n, 2):
+        if n%i == 0:
+            return False
+    return True
+
+def getprime(n):
+    i = 3
+    count = 1
+    while count < n:
+        count += isprime(i)
+        i += 2
+    return i - 2
+
+getprime(10001)
+    
 sum_sq() - sq_sum()
 </head>
 

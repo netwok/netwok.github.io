@@ -144,14 +144,15 @@ def isprime(n):
     return True
 
 def getprime(n):
+    if n == 1:
+        return 2
     i = 3
-    count = 1
-    while count < n:
-        count += isprime(i)
+    count = 3
+    while count <= n:
         i += 2
-    return i - 2
+        count += isprime(i)
+    return i
 
-getprime(10001)
     
 sum_sq() - sq_sum()
 </head>

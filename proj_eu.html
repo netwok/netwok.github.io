@@ -28,7 +28,7 @@ def even_fib(lim):
 sum(even_fib(4000000))
   </code>
  </pre>
-
+3.
 <pre>
  <code>
 def primes(n):
@@ -50,6 +50,30 @@ primes(600851475143)
   </code>
  </pre>
 
+4.
+def is_pal(n):
+    l = list(str(n))
+    while l:
+        if l[0]==l[-1]:
+            del l[0]
+            try:
+                del l[-1]
+            except:
+                pass
+        else:
+            return False
+    return True
+    
+def get_pal():
+    ans = (0,0,0)
+    for i in range(1, 1000):
+        for j in range(1,1000):
+            if is_pal(i*j):
+                if i*j > ans[0]:
+                    ans = (i*j,i,j)
+    return ans
+    
+get_pal()
 </head>
 
 </html>

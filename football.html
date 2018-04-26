@@ -1,3 +1,180 @@
 ---
 layout: default
 ---
+
+<html>
+  <head>
+
+<h2>Here I post my solutions for the Project Euler challenges</h2>
+
+1.
+<pre>
+ <code>
+  sum([i for i in range(1,n) if (i)%3==0 or (i)%5==0])
+ </code>
+</pre>
+
+2.
+<pre>
+ <code>
+def even_fib(lim):
+    num1 = 1
+    num2 = 2
+    while num2 < lim:
+        if num2%2==0:
+            yield num2
+        num1, num2 = num2, num1+num2 #update fibonacci numbers for next pass
+    
+sum(even_fib(4000000))
+  </code>
+ </pre>
+3.
+<pre>
+ <code>
+def primes(n):
+    fac = 2
+    end = n
+    maxi = -1
+    
+    while fac <= n:
+        print('trying fac {}'.format(fac))
+        while n%fac == 0:
+            print('success')
+            n=int(n/fac)
+            print('end is {}'.format(n))
+            maxi = fac
+        fac += 1
+    return maxi
+
+primes(600851475143)
+  </code>
+ </pre>
+
+4.
+def is_pal(n):
+    l = list(str(n))
+    while l:
+        if l[0]==l[-1]:
+            del l[0]
+            try:
+                del l[-1]
+            except:
+                pass
+        else:
+            return False
+    return True
+    
+def get_pal():
+    ans = (0,0,0)
+    for i in range(1, 1000):
+        for j in range(1,1000):
+            if is_pal(i*j):
+                if i*j > ans[0]:
+                    ans = (i*j,i,j)
+    return ans
+    
+get_pal()
+
+5.
+def hard():
+    i = 2520
+    found = False
+    while found == False:
+        found = True
+        for j in range(1, 21):
+            if i%j == 0:
+                pass
+            else:
+                found = False
+                i += 2
+    return i
+    
+hard()
+
+also:
+<-- import pandas as pd
+
+def primes(n):
+    fac = 2
+    end = n
+    pri = []
+    
+    while fac <= n:
+        while n%fac == 0:
+            print('success')
+            n=int(n/fac)
+            pri.append(fac)
+        fac += 1
+    return pri
+
+
+def all_primes(n):
+    totals = []
+    for i in range(2, n+1):
+        totals.append(primes(i))
+    return totals
+    
+all_primes(4) -->
+
+
+6.
+def sum_sq(n = 100):
+    sum = 0
+    for i in range(1,n+1):
+        sum = sum + (i*i)
+    return sum
+    
+def sq_sum(n = 100):
+    sum = 0
+    for i in range(1,n+1):
+        sum = sum + i
+    return sum * sum
+    
+7.
+def isprime(n):
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2==0:
+        return False
+    for i in range(3, n, 2):
+        if n%i == 0:
+            return False
+    return True
+
+def getprime(n):
+    if n == 1:
+        return 2
+    i = 3
+    count = 3
+    while count <= n:
+        i += 2
+        count += isprime(i)
+    return i
+
+    
+sum_sq() - sq_sum()
+
+8.
+#bigstr = str(big)
+#spl = bigstr.split('0')
+#cut = [i for i in spl if len(i) > 12]
+
+sum = 0
+for i in spl:
+    
+    if len(i) >= 13:
+       sum += 1 
+print(sum)
+
+
+- for each segment,
+    for i in len(str) - 13
+      save seg[i,i + 13] as a str
+      
+  compute for all strings and find the max
+  
+</head>
+
+</html>

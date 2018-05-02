@@ -161,19 +161,30 @@ sum_sq() - sq_sum()
 #spl = bigstr.split('0')
 #cut = [i for i in spl if len(i) > 12]
 
-sum = 0
-for i in spl:
-    
-    if len(i) >= 13:
-       sum += 1 
-print(sum)
+def mult(string):
+    p = 1
+    for i in range(len(string)):
+        p = p*int(string[i])
+    return p
 
+def get_max_13(string):
+    p = 0
+    for i in range(len(string)-12):
+        multi = mult(string[i:i+13])
+        if multi > p:
+            p = multi
+            best = string[i:i+13]
+    return (p, best)
 
-- for each segment,
-    for i in len(str) - 13
-      save seg[i,i + 13] as a str
-      
-  compute for all strings and find the max
+prod = 0
+for string in cut:
+    score, line = get_max_13(string)
+    if score > prod:
+        prod = score
+        best = line
+
+print(prod)
+print(best)
   
 </head>
 

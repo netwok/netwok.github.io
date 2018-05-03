@@ -260,6 +260,56 @@ for row in range(17):
             loca = (row, col, 'l')
             print(tot, loca)
 final print gives answer and location
+
+12.
+def get_primes(n):
+    fac = 2
+    end = n
+    maxi = []
+    
+    while fac <= n:
+        while n%fac == 0:
+            n=int(n/fac)
+            maxi.append(fac)
+        fac += 1
+    return maxi
+
+def num_combis(n):
+    ms = get_primes(n)
+    M = len(ms)
+    N = len(set(ms))
+    score = (2**N)+(2**(N-1))*(M-N)
+    print(score)
+    return score
+    
+def gen_triangles(n):
+    s = 0
+    k = 1
+    while(s<n):
+        print('k = ', k)
+        s += k
+        k += 1
+        yield s
+    
+def first_with_lots(n=500):
+    for tri in gen_triangles(1000000000):
+        print('trying ',tri)
+        if num_combis(tri) >= n:
+            return tri
+    else:
+        print('oops')
+        
+
+first_with_lots()
+
+import itertools
+
+
+def permis(a,n):
+    b = set()
+    list(itertools.permutations([1, 2, 3]))[:n] 
+    
+
 </head>
 
 </html>

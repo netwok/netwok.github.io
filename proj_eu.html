@@ -185,7 +185,28 @@ for string in cut:
 
 print(prod)
 print(best)
-  
+
+
+9.
+def sumprimes(n):
+    p = [2,3,5]
+    summation = 10
+    k = 7
+    odd = True
+    while k < n:
+        for i in p:
+            if k%i == 0:
+                break
+        p.append(k)
+        summation += k
+        k = k + 2 + 2*odd        
+        odd = not(odd)
+    print(p)
+    return summation
+        
+sumprimes(2000000)
+
+
 </head>
 
 </html>

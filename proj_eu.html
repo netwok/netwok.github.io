@@ -310,6 +310,34 @@ sum(lits)
 
 14.
 
+collatz = [-1]*10**7
+collatz[1] = 1
+
+def thiscol(n):
+    global collatz
+    #when we reach a previous position, don't recalculate
+    if collatz[n] > 0:
+        return collatz[n]
+    elif n%2 == 0:
+        #print('even! going down to ',str(int(n/2)))
+        collatz[n] = thiscol(int(n/2)) + 1
+        return collatz[n]
+    else:
+        #print('odd! going up to ',str(3*n + 1))
+        collatz[n] = thiscol(int(3*n + 1))+1
+        return collatz[n]
+
+def getcols(n):
+    global collatz
+    #collatz = [-1]* 10**7
+    #collatz[1] = 1
+    #if there is any number where distance is not defined
+    while -1 in collatz[1:n]:
+        target = collatz[1:].index(-1)+1
+        print(target)
+        thiscol(target)
+    print('max is ',collatz.index(max(collatz)),' with distance ', max(collatz))
+    return collatz.index(max(collatz))
 </head>
 
 </html>

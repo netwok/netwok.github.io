@@ -337,6 +337,32 @@ def getcol(upto):
     #print('max is ',collatz.index(max(collatz)),' with distance ', max(collatz))
     #return collatz.index(max(collatz))
     
+15. lattice paths
+
+   def ans(n):
+    n += 1
+    import numpy as np
+    top = np.array([[1]*n])
+    rest = np.zeros((n-1,n))
+    full = np.vstack([top,rest])
+    def score(i,j):
+        #we're only going to work with the top-right half of the matrix as it is symmetrical
+        if i > j:
+            i,j=(j,i)
+        if full[i,j] == 0:
+            val = score(i-1,j) + score(i,j-1)
+            full[i,j] = val
+            return val
+        else:
+            return full[i,j]
+    return score(n-1,n-1)
+    
+16.
+s = 0
+for i in str(2**1000):
+s += int(i)
+print(s)
+    
 </head>
 
 </html>

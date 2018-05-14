@@ -470,7 +470,15 @@ def makeable(n):
             if i + j == n:
                 return True
     return False
- 
+
+          
+22.
+from itertools import permutations
+ss2 = permutations('0123456789',10)            
+def millionth():
+    for i in range(0,999999):
+        next(ss2)
+    print(next(ss2))
 </head>
 
 </html>

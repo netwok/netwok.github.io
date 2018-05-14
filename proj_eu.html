@@ -431,6 +431,46 @@ def get_divs(n):
     print(superlist)
     return sum(superlist)
 
+          
+22.
+def get_primes(n):
+    from collections import defaultdict
+    fac = 2
+    maxi = defaultdict(int)
+    
+    while fac <= n:
+        while n%fac == 0:
+            n=int(n/fac)
+            maxi[fac] += 1
+        fac += 1
+    return maxi
+    
+def abun(n):
+    ms = get_primes(n)
+    superlist = set([1])
+    
+    for key, val in ms.items():
+        temp = set()
+        for i in range(1,val+1):
+            for bit in superlist:
+                temp.add(bit*key**i)
+        superlist.update(temp)
+    superlist.remove(n)
+    return sum(superlist) > n
+    
+
+#import numpy as np
+ans = np.array([i for i in range(1,28123)])
+#abuns = np.array([i for i in range(1,28123) if abun(i)])
+
+def makeable(n):
+    x = abuns[np.where(abuns < n)]
+    for i in x:
+        for j in x:
+            if i + j == n:
+                return True
+    return False
+ 
 </head>
 
 </html>

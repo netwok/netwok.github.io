@@ -403,6 +403,34 @@ for i in ___:
     runner += lens[mon[i%12]]
     count += days[runner%7] == 'sun'
 print(count)
+          
+21.
+def get_primes(n):
+    from collections import defaultdict
+    fac = 2
+    maxi = defaultdict(int)
+    
+    while fac <= n:
+        while n%fac == 0:
+            n=int(n/fac)
+            maxi[fac] += 1
+        fac += 1
+    return maxi
+
+def get_divs(n):
+    ms = get_primes(n)
+    superlist = set([1])
+    
+    for key, val in ms.items():
+        temp = set()
+        for i in range(1,val+1):
+            for bit in superlist:
+                temp.add(bit*key**i)
+        superlist.update(temp)
+    superlist.remove(n)
+    print(superlist)
+    return sum(superlist)
+
 </head>
 
 </html>

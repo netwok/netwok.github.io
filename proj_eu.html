@@ -527,7 +527,10 @@ def comb(a,b):
         for j in range(2,b+1):
             s.add(i**j)
     return s
-          
+
+30.
+# 354294 == 5*(9**5) is our upper limit
+[i for i in range(2,354294) if i == sum([int(i) ** 5 for i in str(i)])]
 </head>
 
 </html>

@@ -497,6 +497,28 @@ def soln(lim):
         count += 1
         
 soln(10**999)
+
+28.
+          #generator to find next four numbers in spiral and increase side length by 2 each time
+def few():
+    a = 1
+    jump = 2
+    while True:
+        c = [a,a+jump,a+jump*2,a+jump*3]
+        a = c[3]+jump
+        jump = jump + 2
+        yield c
+
+          #runs the generator and adds up the sum until the top-riht corner is reached
+def ans(n=1001):
+    some = few()
+    total = 0
+    c = [0]
+    while c[0] < n**2:
+        c = next(some)
+        total += sum(c)
+    #exclude the outer layer as we have overshot, but include the top-right corner (i.e. c[0] or this iteration)
+    return total - sum(c) + n
           
 </head>
 

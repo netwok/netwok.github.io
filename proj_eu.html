@@ -519,6 +519,14 @@ def ans(n=1001):
         total += sum(c)
     #exclude the outer layer as we have overshot, but include the top-right corner (i.e. c[0] or this iteration)
     return total - sum(c) + n
+
+29. 
+def comb(a,b):
+    s = set()
+    for i in range(2,a+1):
+        for j in range(2,b+1):
+            s.add(i**j)
+    return s
           
 </head>
 

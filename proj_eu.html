@@ -533,11 +533,41 @@ def comb(a,b):
 [i for i in range(2,354294) if i == sum([int(i) ** 5 for i in str(i)])]
           
 31.
-start with biggest coin:
-    add one:
-        if total has reached 200:
-           add permutation to set.
-              start again with a smaller coin
+write an algorithm to do the following process to find all permutations, adding smaller coins when target is met or overshot: 
+
+valindex = 0 #edit first coin
+[200] sum == 200 #reached target, add to set, try smaller coin in valindex [200]
+[100] sum == 100 # less than target, increase valindex
+    valindex = 1
+    [.. 100], sum == 200 #reached target, add to set, try smaller coin in valindex [100,100]
+    [.. 50], sum == 150 # less than target, increase valindex
+        valindex = 2
+        [.. 50] sum == 200 #reached target, add to set, try smaller coin in valindex [100,50,50]
+        [.. 20] sum == 170 # less than target, increase valindex
+            valindex = 3
+            #add a 20p coin here
+            [.. 20] sum == 210 #overshot, try smaller coin in valindex
+            [.. 10] sum == 200 #reached target, add to set, try smaller coin in valindex 
+            [.. 5] sum == 195 # less than target, increase valindex
+                valindex = 4
+                [.. 5] sum == 200 #reached target, add to set, try smaller coin in valindex
+                [.. 2] sum = 197 # less than target, increase valindex
+                    valindex = 5
+                    [.. 2] sum = 199 # less than target, increase valindex
+                        valindex = 6
+                        [.. 2] sum = 201 #overshot, try smaller coin in valindex
+                        [.. 1] sum = 200 #reached target, add to set, try smaller coin before valindex
+                    valindex = 5
+                    [.. 1] sum = 198 # less than target, increase valindex
+                        valindex = 6
+                        [.. 1] sum = 199
+                            valindex = 7
+                            [.. 1] sum = 200 #reached target, add to set, try smaller coin before valindex
+                        valindex = 6 #nothing smaller than penny
+                    valindex = 5 #nothing smaller than penny
+                valindex = 4
+                        
+
 </head>
 
 </html>

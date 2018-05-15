@@ -472,13 +472,32 @@ def makeable(n):
     return False
 
           
-22.
+23.
 from itertools import permutations
 ss2 = permutations('0123456789',10)            
 def millionth():
     for i in range(0,999999):
         next(ss2)
     print(next(ss2))
+          
+25.
+def fib():
+    a = 1
+    b = 1
+    while True:
+        yield a
+        a,b = b, a+b
+        
+def soln(lim):
+    nums = fib()
+    count = 1
+    while True:
+        if next(nums) > lim:
+            return count
+        count += 1
+        
+soln(10**999)
+          
 </head>
 
 </html>

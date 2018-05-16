@@ -605,7 +605,30 @@ def ans():
 ans()
           
 #pretty quick
+
+33.
+def isfrac(a,b):
+             A = str(a)
+             B = str(b)
+             if A[-1] == B[0]:
+                 if a/b == int(A[:-1])/int(B[1:]):
+                     return True
+             return False
+         
+
+def ans():
+    v = 1
+    for a in range(10, 100):
+        for b in [i for i in range(a+1,100) if i%10 > 0]:
+            if isfrac(a,b):
+                v = v * b/a
+    return v
+                 
+ans()
           
+#all candidate answers can be written in the form [ab, bc] with c>b>a.
+#Code should evaluate only these possibilities to get rid of an if in the 1st function and run fewer iterations in the 2nd.
+                     
 </head>
 
 </html>

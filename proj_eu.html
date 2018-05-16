@@ -582,6 +582,30 @@ def find():
                 ans += 1
             if sum(this.append([coins[i]])) > 200:
                 valindex += -1
+#this code is way to slow, there is no need to mess about with the pennies like that.. better solution would be to calculate number of ways to make each sub-amount (stored in list) and work up to 200
+          
+32.
+def isprod(stri):
+    #string is a permutation of the nine digits
+    c = int(stri[5:])
+    for i in [2,1]:
+            a = int(stri[0:i])
+            b = int(stri[i:5])
+            if a*b == c:
+                return c
+    return 0
+
+def ans():
+    from itertools import permutations
+    vals = set()
+    for perm in permutations('123456789'):
+        vals.add(isprod(''.join(perm))) 
+    return sum(vals)
+
+ans()
+          
+#pretty quick
+          
 </head>
 
 </html>

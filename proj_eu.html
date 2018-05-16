@@ -679,6 +679,15 @@ for n in primes:
 print(count)
 
 #this one runs really quickly, sieves and solves in less than a second on Datacamp server
+
+36.
+def ispal(n):
+    for l in [list(str(n)),list(format(n,'b'))]:
+        if l!=[i for i in reversed(l)]:
+                return False
+    return True
+sum([z for z in range(1,1000000,2) if ispal(z)])
+
 </head>
 
 </html>

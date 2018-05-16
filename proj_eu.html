@@ -628,7 +628,23 @@ ans()
           
 #all candidate answers can be written in the form [ab, bc] with c>a, b>a.
 #Code should evaluate only these possibilities to get rid of an if in the 1st function and run fewer iterations in the 2nd.
-                     
+
+34.
+from math import factorial as f
+
+def isdf(n):
+    magic = sum([f(int(digit)) for digit in str(n)])
+    return magic*(magic==n)
+    
+def ans():
+    for i in range(3,1000000):
+        x = isdf(i)
+        if x>0:
+            print(x)
+          
+#could have predefined the factorials to save time
+
+          
 </head>
 
 </html>

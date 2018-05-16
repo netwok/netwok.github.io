@@ -644,7 +644,39 @@ def ans():
           
 #could have predefined the factorials to save time
 
-          
+35. Circular Primes
+#implement a sieve to find all primes under 1 million
+#run circ(n) on each element of that list, counting the Trues
+
+def sieve(lim=1000000):
+    primes = [n for n in range(3,lim,2)]
+    for prime in primes:
+        if prime > 2:
+            #print('prime is: ',prime)
+            #all primes over 2 are odd so I'm mapping indicies to numbers with n = 2i+3 (e.g. n = 3, 5, 7, etc. for i = 0, 1, 2)
+            for mult in range(3,int(lim/prime)+1,2):
+                #a sneaky way to make sure 2 is listed as prime, set score for non-primes as 2
+                primes[int((prime*mult)/2-1.5)] = 2
+    #removes all those extra 2's and condenses output to reduce space
+    return set(primes)
+    
+def circ(n,primes):
+    #n must be prime itself, so we assume it is
+    string = str(n)
+    end = len(string)
+    #then check each rotation by splitting the string at each point internally
+    for split in range(1,end):
+        #using our swet of primes from before
+        if int(string[split:end]+string[0:split]) not in primes:
+            return False
+    return True
+    
+primes = sieve()
+
+count = 0
+for n in primes:
+    count += circ(n,primes)
+print(count)
 </head>
 
 </html>

@@ -651,8 +651,8 @@ def ans():
 def sieve(lim=1000000):
     primes = [n for n in range(3,lim,2)]
     for prime in primes:
+        #we don't want to bother multiplying through the numbers that we have already marked off as non-primes
         if prime > 2:
-            #print('prime is: ',prime)
             #all primes over 2 are odd so I'm mapping indicies to numbers with n = 2i+3 (e.g. n = 3, 5, 7, etc. for i = 0, 1, 2)
             for mult in range(3,int(lim/prime)+1,2):
                 #a sneaky way to make sure 2 is listed as prime, set score for non-primes as 2
@@ -677,6 +677,8 @@ count = 0
 for n in primes:
     count += circ(n,primes)
 print(count)
+
+#this one runs really quickly, sieves and solves in less than a second on Datacamp server
 </head>
 
 </html>

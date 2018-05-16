@@ -709,21 +709,19 @@ sum([pri for pri in primes if istrunc(pri)])
 def getmults(x):
     mults = []
     i = 1
+    aim = set('123456789')
     while len(mults) < 9:
         mults.extend(str(x*i))
         i += 1
-    if len(mults) > 9:
-        return False
-    #print(mults)
-    g= mults[:]
-    g.sort()
-    if g == list('123456789'):
+    if len(mults) == 9 and set(mults) == aim:
         return int(''.join(mults))
     return False
+    
 mits = set()        
 for i in range(9000,9877):
     mits.add(getmults(i))
 max(mits)
+
 </head>
 
 </html>

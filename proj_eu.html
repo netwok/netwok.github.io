@@ -498,6 +498,32 @@ def soln(lim):
         
 soln(10**999)
 
+27. #Quadratic Primes
+primes = sieve() #as per Q35
+
+def islucky(a,b,primes):
+    count = 0
+    n = 0
+    isprime = True
+    while isprime:
+        isprime = (n**2 +a*n +b) in primes
+        count += isprime
+        n += 1
+    return count
+    
+def ans():
+    biggest = 40
+    product = 41
+    #b must be odd because of n == 0
+    #a must be odd because of n == 1, and b being odd
+    for a in range(-999,1001,2):
+        for b in range(-999,1001,2):
+            count = islucky(a,b,primes)
+            if count > biggest:
+                product = a*b
+                biggest = count
+    return product
+          
 28.
           #generator to find next four numbers in spiral and increase side length by 2 each time
 def few():
@@ -722,6 +748,27 @@ for i in range(9000,9877):
     mits.add(getmults(i))
 max(mits)
 
+39.
+def tris(n):
+    count = 0
+    for a in range(3,int(n/2)):
+        #given we know a+b+c==n, a**2 + b**2 == c**2, solution to the simultaneous equations is:
+        b = (2*a*n - n**2)/(2*a - 2*n)
+        #checking if b is integer, and removing duplicates
+        if round(b)==b and b > a:
+            count += 1
+    return count
+    
+def ans():
+    highest = 1
+    val = 12
+    for p in range(12, 1001):
+        ways = tris(p)
+        if ways > highest:
+            val = p
+            highest = ways
+    return val
+#very quick because I used mathematics instead of an extra for loop
 </head>
 
 </html>

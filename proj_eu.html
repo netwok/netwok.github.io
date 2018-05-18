@@ -762,7 +762,8 @@ def tris(n):
 def ans():
     highest = 1
     val = 12
-    for p in range(12, 1001):
+    #If a and b are both odd or both even then a**2+b**2 is even. If just one is odd then a**2+b**2 is odd, so a+b+c is even either way.
+    for p in range(12, 1001,2):
         ways = tris(p)
         if ways > highest:
             val = p

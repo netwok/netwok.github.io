@@ -751,7 +751,8 @@ max(mits)
 39.
 def tris(n):
     count = 0
-    for a in range(3,int(n/2)):
+    #a is the shortest side so 3a < a+b+c = n, hence a < n/3
+    for a in range(3,int(n/3)):
         #given we know a+b+c==n, a**2 + b**2 == c**2, solution to the simultaneous equations is:
         b = (2*a*n - n**2)/(2*a - 2*n)
         #checking if b is integer, and removing duplicates

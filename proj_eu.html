@@ -771,6 +771,45 @@ def ans():
             highest = ways
     return val
 #very quick because I used mathematics instead of an extra for loop
+
+40.
+from time import *
+
+def pow_to_loc(n):
+    dist = 0
+    power = 0
+    for power in range(0,n):
+        dist += (9*10**(power-1)) * power
+    return (dist + 1,dist + 9*10**(power) * (power+1))
+
+def loc_to_pow(loc):
+    power = 1
+    while pow_to_loc(power)[0] <= loc:
+        power += 1
+    return power - 1
+
+def loc_to_num(loc):
+    power = loc_to_pow(loc)
+    lower, upper = pow_to_loc(power)
+    over = loc - lower
+    #we have an n-digit number where n == power
+    n = over/power
+    i = int(n)
+    real = 10**(power-1) + i
+    dig = over % power
+    return str(real)[int(dig)]
+    
+def ans():
+    product = 1
+    for loc in [10**p for p in range(7)]:
+        product = product * int(loc_to_num(loc))
+    return product
+
+start = clock()
+print(ans())
+print("Time taken = {}".format(clock() - start))
+
+#gets the answer in around half a millisecond
 </head>
 
 </html>

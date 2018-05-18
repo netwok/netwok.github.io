@@ -810,6 +810,25 @@ print(ans())
 print("Time taken = {}".format(clock() - start))
 
 #gets the answer in around half a millisecond
+
+41. Pandigital Primes
+#sieve is not useful here, test cases are too few and too large.
+def isprime(n):
+    if n % 2 == 0:
+        return False
+    for fac in range(3,int(n**0.5),2):
+        if n % fac == 0:
+            return False
+    return True
+from itertools import permutations
+def pands(n):
+    g = [str(i) for i in range(n,0,-1)]
+    l = permutations(g)
+    for n in l:
+        n = int(''.join(n))
+        if isprime(n):
+            return n
+pands(7)
 </head>
 
 </html>

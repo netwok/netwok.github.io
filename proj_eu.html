@@ -832,6 +832,28 @@ pands(7)
 
 42. Coded triangle numbers
 #answer took 8.5 miliseconds but is too long, see separate file
+
+43. Pandigitals
+def ismagic(n):
+    N = str(n)
+    for i in range(0,7):
+        if int(N[i+1:i+4]) % primes[i]  != 0:
+            return False
+    return True
+	
+from itertools import permutations
+def pands(n):
+    primes = [2,3,5,7,11,13,17]
+    net = []
+    g = [str(i) for i in range(n,-1,-1)]
+    l = permutations(g)
+    for n in l:
+        n = int(''.join(n))
+        if n <= 987654321:
+            return net
+        if ismagic(n):
+            net.append(n)
+    return net
 </head>
 
 </html>

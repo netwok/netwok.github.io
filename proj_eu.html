@@ -854,6 +854,21 @@ def pands(n):
         if ismagic(n):
             net.append(n)
     return net
+    
+44. Pentagonal Numbers
+pents = [n*(3*n-1)/2 for n in range(1,10000)]
+pentset = set(pents)
+
+def gettem():
+    for i in pents:
+        for j in pents:
+            if i + j in pentset:
+                if i - j in pentset:
+                    print(i,j,i-j)
+    return 'done'
+
+gettem()
+
 </head>
 
 </html>

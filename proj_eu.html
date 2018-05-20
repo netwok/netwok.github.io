@@ -871,6 +871,29 @@ gettem()
 
 45.
 set([n*(3*n-1)/2 for n in range(1,200000)]).intersection(set([n*(n+1)/2 for n in range(1,300000)])).intersection(set([n*(2*n-1) for n in range(1,100000)]))
+
+46. 
+primes = sieve()
+
+def works(n):
+    for pri in primes:
+        if pri > n:
+            return False
+        i = ((n-pri)/2)**0.5
+        if i == int(i):
+            return True
+    return False
+            
+def ans():
+    for comp in range(3,100000,2):
+        if comp in primes:
+            continue
+        if works(comp):
+            continue
+        return comp
+            
+print(ans())
+            
 </head>
 
 </html>

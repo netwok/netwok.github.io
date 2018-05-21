@@ -893,7 +893,23 @@ def ans():
         return comp
             
 print(ans())
-            
+
+49. Prime permutations
+#Two lines to get all the 4-digit primes
+primes = sieve(10000)
+primes = [p for p in primes if p > 1000]
+spri = set(primes)
+from itertools import permutations
+
+def ans():
+    #starts counting from 1489 onwards
+    for first in primes[68:]:
+        magic = set([int(''.join(i)) for i in permutations(str(first))]).intersection(spri)
+        if len(magic) > 2:
+            for second in magic.difference(set([first])):
+                if second + (second - first) in magic:
+                    return (first, second, second + (second - first))
+ans()
 </head>
 
 </html>

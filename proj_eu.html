@@ -912,6 +912,27 @@ def ans():
                 if second + (second - first) in magic:
                     return (first, second, second + (second - first))
 ans()
+
+50. Consecutive prime sum
+#Takes 2.72 seconds
+primes = sieve()
+spri = set(primes)
+
+def consec(primes = primes, lim = 1000000):
+    starter = 0
+    max_len = 0
+    max_pri = 0
+    for i in range(1,len(primes)):
+        for j in range(1,len(primes)-i):
+            sumup = sum(primes[i:i+j])
+            if sumup > lim:
+                break
+            if sumup in spri:
+                if j > max_len:
+                    starter = i
+                    max_len = j
+                    max_pri = sumup
+    return (primes[starter],max_len,max_pri)
 </head>
 
 </html>

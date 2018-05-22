@@ -948,6 +948,18 @@ def ans():
 54.
 
 55.
+def lyc(val):
+    iters = 0
+    z = int(''.join(reversed(str(val))))
+    while iters < 50:
+        iters += 1
+        val = val + z
+        z = int(''.join(reversed(str(val))))
+        if val == int(''.join(reversed(str(val)))):
+            return False
+    return True
+    
+sum([lyc(i) for i in range(1,10001)])
 
 56.
 

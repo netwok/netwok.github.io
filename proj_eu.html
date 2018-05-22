@@ -967,6 +967,22 @@ sum([lyc(i) for i in range(1,10001)])
 max([sum([int(digit) for digit in str(a**b)]) for a in range(90,100) for b in range(90,100)])
 
 57.
+def root2():
+    x = (1,1)
+    while True:
+        num = x[0] + 2* x[1]
+        denom = x[0] + x[1]
+        x = (num,denom)
+        yield (len(str(x[0]) > len(str(x[1]))
+
+def ans():
+    seq = root2()
+    count = 0
+    for i in range(1000):
+        count += next(seq)
+    return count
+    
+ans()
 
 58.
 

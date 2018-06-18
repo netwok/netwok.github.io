@@ -1001,11 +1001,9 @@ def ans():
         while len(contender) < 5:
             ind += 1
             other = primes[ind]
-            if int(str(first)+str(other)) in primes:
-                if int(str(other)+str(first)) in primes:
-                    contender.append(other)
-                    if not test(contender):
-                        contender.remove(other)
+            contender.append(other)
+            if not test(contender):
+                contender.remove(other)
 ans()
 
 def test(lis):

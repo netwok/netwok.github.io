@@ -991,6 +991,30 @@ ans()
 59.
 
 60.
+#primes = sieve(10000000)
+
+def ans():
+    winner = [9999999]*5
+    for ind in range(78498):
+        first = primes[ind]
+        contender = [first]
+        while len(contender) < 5:
+            ind += 1
+            other = primes[ind]
+            if int(str(first)+str(other)) in primes:
+                if int(str(other)+str(first)) in primes:
+                    contender.append(other)
+                    if not test(contender):
+                        contender.remove(other)
+ans()
+
+def test(lis):
+    for i in range(len(lis)):
+        for j in range(len(lis)):
+            if i != j:
+                if int(str(lis[i])+str(lis[j])) not in primes:
+                    return False
+    return True
 
 61.
 

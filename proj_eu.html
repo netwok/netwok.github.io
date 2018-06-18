@@ -685,6 +685,7 @@ def sieve(lim=1000000):
                 primes[int((prime*mult)/2-1.5)] = 2
     #removes all those extra 2's and condenses output to reduce space
     return set(primes)
+    # or, return [2]+[p for p in primes if p > 2]
     
 def circ(n,primes):
     #n must be prime itself, so we assume it is

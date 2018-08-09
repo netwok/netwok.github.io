@@ -433,43 +433,30 @@ def get_divs(n):
 
           
 22.
-def get_primes(n):
-    from collections import defaultdict
-    fac = 2
-    maxi = defaultdict(int)
-    
-    while fac <= n:
-        while n%fac == 0:
-            n=int(n/fac)
-            maxi[fac] += 1
-        fac += 1
-    return maxi
-    
-def abun(n):
-    ms = get_primes(n)
-    superlist = set([1])
-    
-    for key, val in ms.items():
-        temp = set()
-        for i in range(1,val+1):
-            for bit in superlist:
-                temp.add(bit*key**i)
-        superlist.update(temp)
-    superlist.remove(n)
-    return sum(superlist) > n
-    
+def is_abund(n):
+    ans = set([])
+    for i in range(2,int(n**0.5 + 1)):
+        g = n//i
+        if g == n/i:
+            ans.update([i, g])
+    return( sum(ans) + 1 > n) 
+#finds the factors 2-at-a-time, returns a boolean of whether their sum is > n
 
-#import numpy as np
-ans = np.array([i for i in range(1,28123)])
-#abuns = np.array([i for i in range(1,28123) if abun(i)])
+abunds = [x for x in range(1,28123) if is_abund(x)]
+bits = 28123*[0]
+#a bitarray to keep track of which numbers can be made by sums
 
-def makeable(n):
-    x = abuns[np.where(abuns < n)]
-    for i in x:
-        for j in x:
-            if i + j == n:
-                return True
-    return False
+for i in range(3490):
+#abunds[3490] = 14064, so there is no sense in going past this point for the smaller item
+    for j in range(i, 6965):
+#This keeps j>=i to remove duplication of summations
+        s = abunds[i]+abunds[j]
+        if s > 28122:
+#no point in checking for larger values of j, just move on to the next i
+            break
+        bits[s]= 1
+        
+sum([i for i in range(len(bits)) if bits[i] == 0])
 
           
 23.

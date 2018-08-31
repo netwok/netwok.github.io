@@ -16,7 +16,7 @@ class Inspector(object):
         self.diplomatic_authorization = set([])
         
     def receive_bulletin(self, message):
-        print(bulletin)
+        print(message)
         self.outlaw = ''
         mess = message.split('\n')
         for line in mess:
@@ -64,9 +64,45 @@ class Inspector(object):
                 start = line.find('of ') + 3
                 c = line[start:line.find(' req')].split(', ')
                 self.diplomatic_authorization.update(c)
-
+    
+    def detain(self, code):
+        return "Detainment: {} mismatch.".format(code)
+        
+    def deny(self, code):
+        return "Entry denied: missing required {}.".format(code)
+    
     def inspect(self, entrant):
-        #first check the names for criminals
+        print('entrant: ',entrant)
+        entrant = Entrant(entrant)
+        if self.outlaw:
+            if self.outlaw in entrant.name:
+                return "Detainment: Entrant is a wanted criminal."
+        if len(entrant.name) > 1:
+            return self.detain("name")
+        if len(entrant.ID) > 1:
+            return self.detain("ID number")
+        if len(entrant.DOB) > 1:
+            return self.detain("DOB")
+        if len(entrant.nation) > 1:
+            return self.detain("nation")
+        if len(entrant.sex) > 1:
+            return self.detain("sex")
+        if entrant.nation in self.polio:
+            #if 
+            return self.deny("vaccination")
+        if self.passport:
+            if 'passport' not in entrant.docs:
+                return self.deny('passport')
+        if entrant.nation not in self.allowed:
+            if entrant.nation != {"Arstotzka"} and 'access_permit' not in entrant.docs:
+                return 'Entry denied: citizen of banned nation.'
+            
+        #OK, let 'em through.
+        if entrant.nation == {"Arstotzka"}:
+            return 'Glory to Arstotzka.'
+        else:
+            return "Cause no trouble."
+            
         #if outlaws in entrant.names: return 'Detained etc.'
         #if len(entrant.names) > 1 or len(entrant.DOBs) > 1 or...: return 'False Documents etc.'
         #if documents expired: return 'yadda yadda'
@@ -79,12 +115,12 @@ class Entrant(object):
     def __init__(self, description):
         self.description = description
         self.docs = description.keys()
-        self.name = set(self.get_detail(self.description[doc], 'NAME: ') for doc in self.docs)
-        self.ID = set(self.get_detail(self.description[doc], 'ID#: ') for doc in self.docs)
-        self.DOB = set(self.get_detail(self.description[doc], 'DOB: ') for doc in self.docs)
-        self.nation = set(self.get_detail(self.description[doc], 'NATION: ') for doc in self.docs)
-        self.EXP = set(self.get_detail(self.description[doc], 'EXP: ') for doc in self.docs)
-        self.sex = set(self.get_detail(self.description[doc], 'SEX: ') for doc in self.docs)
+        self.name = set(self.get_detail(self.description[doc], 'NAME: ') for doc in self.docs if 'NAME: ' in self.description[doc])
+        self.ID = set(self.get_detail(self.description[doc], 'ID#: ') for doc in self.docs if 'ID#: ' in self.description[doc])
+        self.DOB = set(self.get_detail(self.description[doc], 'DOB: ') for doc in self.docs if 'DOB: ' in self.description[doc])
+        self.nation = set(self.get_detail(self.description[doc], 'NATION: ') for doc in self.docs if 'NATION: ' in self.description[doc])
+        self.EXP = set(self.get_detail(self.description[doc], 'EXP: ') for doc in self.docs if 'EXP: ' in self.description[doc])
+        self.sex = set(self.get_detail(self.description[doc], 'SEX: ') for doc in self.docs if 'SEX: ' in self.description[doc])
         
     
     def get_detail(self, doc, code):
@@ -95,26 +131,12 @@ class Entrant(object):
         else:
             return ' '.join(n.split(', ')[::-1])
          
-        
-entrant1 = {
-"passport": """ID#: GC07D-FU8AR
-NATION: Arstotzka
-NAME: Guyovich, Russian
-DOB: 1933.11.28
-SEX: M
-ISS: East Grestin
-EXP: 1983.07.10"""
-}
-roman = {
-	"passport": 'ID#: WK9XA-LKM0Q\nNATION: United Federation\nNAME: Dolanski, Roman\nDOB: 1933.01.01\nSEX: M\nISS: Shingleton\nEXP: 1983.05.12',
-	"grant_of_asylum": 'NAME: Dolanski, Roman\nNATION: United Federation\nID#: Y3MNC-TPWQ2\nDOB: 1933.01.01\nHEIGHT: 176cm\nWEIGHT: 71kg\nEXP: 1983.09.20'
-}
 
-inspector = Inspector()
-bulletin2 = """Entrants require passport
-Allow citizens of Arstotzka, Obristan
-Citizens of Arstotzka, Obristan require polio vaccination"""
+bullet = """Allow citizens of Antegria, Impor, Kolechia, Obristan, Republia, United Federation
+Wanted by the State: Andre Karlsson"""
 
-inspector.receive_bulletin(bulletin2)
+i = Inspector()
+i.receive_bulletin(bullet)
 
-
+i.allowed
+x = {'passport': 'ID#: M0RWI-H4F5Z\nNATION: Impor\nNAME: Dahl, Natalya\nDOB: 1954.10.04\nSEX: F\nISS: Tsunkeido\nEXP: 1983.07.08'}

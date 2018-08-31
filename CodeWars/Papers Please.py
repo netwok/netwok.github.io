@@ -4,6 +4,9 @@ countries = ['Arstotzka', 'Antegria', 'Impor', 'Kolechia',
 'Obristan', 'Republia', 'United Federation']
 foreign = ['Antegria', 'Impor', 'Kolechia',
 'Obristan', 'Republia', 'United Federation']
+vacc = {co:0 for co in countries}
+#polio==1, tetanus==2, both==3
+req = {co:[] for co in countries}
 
 class Game(object):
     def __init__(self):
@@ -30,6 +33,11 @@ class Game(object):
                 
     def inspect(self, entrant):
         #first check the names for criminals
+        #if outlaws in entrant.names: return 'Detained etc.'
+        #if len(entrant.names) > 1 or len(entrant.DOBs) > 1 or...: return 'False Documents etc.'
+        #if documents expired: return 'yadda yadda'
+        #for doc in req:
+        # yadda yadda
         pass
 
 
@@ -44,8 +52,12 @@ class Entrant(object):
         self.grant_of_asylum  = description.get('grant_of_asylum', False)
         self.certificate_of_vaccination  = description.get('certificate_of_vaccination', False)
         self.diplomatic_authorization  = description.get('diplomatic_authorization', False)
+        
         self.names = set(self.get_detail(self.description[doc], 'NAME: ') for doc in self.docs)
         self.IDs = set(self.get_detail(self.description[doc], 'ID#: ') for doc in self.docs)
+        self.DOBs = set(self.get_detail(self.description[doc], 'DOB: ') for doc in self.docs)
+        self.nations = set(self.get_detail(self.description[doc], 'NATION: ') for doc in self.docs)
+        
     
     def get_detail(self, doc, code):
         start = doc.find(code) + len(code)
@@ -55,7 +67,6 @@ class Entrant(object):
         else:
             return ' '.join(n.split(', ')[::-1])
          
-        
         
 entrant1 = {
 "passport": """ID#: GC07D-FU8AR
